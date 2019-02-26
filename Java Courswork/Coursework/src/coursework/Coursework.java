@@ -33,7 +33,7 @@ public class Coursework extends JFrame implements ActionListener, KeyListener {
     JTextArea txtNewNote = new JTextArea();
     JTextArea txtDisplayNotes = new JTextArea();
     ArrayList<String> note = new ArrayList<>();
-    ArrayList<String> course = new ArrayList<> ();
+    ArrayList<String> course = new ArrayList<>();
     JComboBox courseList = new JComboBox();
     String crse = "";
     AllNotes allNotes = new AllNotes();
@@ -66,7 +66,7 @@ public class Coursework extends JFrame implements ActionListener, KeyListener {
         if ("Exit".equals(ae.getActionCommand())) {
             System.exit(0);
         }
-        if ("NewNote".eguals(ae.getActionCommand())) {
+        if ("NewNote".equals(ae.getActionCommand())) {
             addNote(txtNewNote.getText());
             txtNewNote.setText("");
         }
@@ -76,52 +76,55 @@ public class Coursework extends JFrame implements ActionListener, KeyListener {
     public void keyTyped(KeyEvent ke) {
         System.out.println("keyTyped has not been coded yet.");
     }
+
     @Override
     public void keyPressed(KeyEvent ke) {
         System.out.println("keyPressed has not been coded yet.");
     }
+
     @Override
     public void keyReleased(KeyEvent ke) {
         System.out.println("keyReleased has not been coded yet.");
     }
+
     private void model() {
         course.add("COMP1752");
         course.add("COMPl753");
         crse = course.get(0);
 
 // // Take these out AFTER you have created the file.
-// Note nt = new Note();
-// nt.setNoteID(1);
-// nt.setDayte(getDateAndTime());
-// nt.setCourse(crse);
-// nt.setNote("Arrays are of fixed length and are inflexible.");
-// allNotes.addNote(nt.getNoteID(), nt.getCourse(), nt.getNote());
-//
+        Note nt = new Note();
+        nt.setNoteID(1);
+        nt.setDayte(getDateAndTime());
+        nt.setCourse(crse);
+        nt.setNote("Arrays are of fixed length and are inflexible.");
+        allNotes.addNote(nt.getNoteID(), nt.getCourse(), nt.getNote());
+
 // // Take these out AFTER you have created the file.
-// nt e new Note();
-// nt.setNoteID(2);
-// nt.setDayte(getDateAndTime());
-// nt.setCourse(CIse):
-// nt.setNote("ArraysList can be added to and items can be deleted.");
-// allNotes.addNote(nt.qetNoteTD(), nt.getCourse(), nt.getNote());
+        nt = new Note();
+        nt.setNoteID(2);
+        nt.setDayte(getDateAndTime());
+        nt.setCourse(crse);
+        nt.setNote("ArraysList can be added to and items can be deleted.");
+        allNotes.addNote(nt.getNoteID(), nt.getCourse(), nt.getNote());
     }
 
     private void view() {
         Font fnt = new Font("Georgia", Font.PLAIN, 24);
-        
+
         JMenuBar menuBar = new JMenuBar();
         JMenu note = new JMenu();
-        
+
         note = new JMenu("Note");
         note.setToolTipText("Note tasks");
         note.setFont(fnt);
-        
+
         note.add(makeMenuItem("New", "NewNote", "Create a new note.", fnt));
         note.addSeparator();
         note.add(makeMenuItem("Close", "Close", "Clear the current note.", fnt));
 
         menuBar.add(note);
-        menuBar.add(makeMenuItem("EXit", "Exit", "Close this program", fnt));
+        menuBar.add(makeMenuItem("Exit", "Exit", "Close this program", fnt));
 
 // This will add each course to the combobox
         for (String crse : course) {
@@ -245,7 +248,7 @@ public class Coursework extends JFrame implements ActionListener, KeyListener {
     private void addAllNotes() {
         String txtNotes = "";
 
-        for (Note n  : allNotes.getAllNotes()) {
+        for (Note n : allNotes.getAllNotes()) {
             txtNotes += n.getNote() + "\n";
         }
 
