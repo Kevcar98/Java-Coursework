@@ -1,0 +1,12 @@
+0	TESTCOURSE     	2019-02-26 16:41:04	Test note pls ignore
+1	COMP1713	2019-03-17 18:30:29	dfgdf
+2	COMP1752	2019-03-17 18:30:35	sdfg
+1	COMP1752	2019-03-17 18:34:44	Arrays are of fixed length and are inflexible.
+2	COMP1752	2019-03-17 18:34:44	ArraysList can be added to and items can be deleted.
+1	COMPl753	2019-03-17 18:35:00	dfgd
+2	COMP1713	2019-03-17 18:35:06	mmm
+3	COMP1752	2019-03-17 18:35:11	ee
+1	COMPl753	2019-03-17 18:53:11	dfg
+2	COMP1752	2019-03-17 18:53:15	dgf
+3	COMP1713	2019-03-17 18:53:20	dfg
+1	COMP1753	2019-03-17 20:51:11	beep boop

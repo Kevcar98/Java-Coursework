@@ -1,0 +1,1 @@
+allNotes.addNote(4533,crse,txtNewNote.getText() );
