@@ -104,7 +104,13 @@ public class Coursework extends JFrame implements ActionListener, KeyListener {
             System.exit(0);
         }
         if ("NewNote".equals(ae.getActionCommand())) {
-            addNote(txtNewNote.getText());
+            String New = txtNewNote.getText();
+            while ("".equals(New)){
+                New = JOptionPane.showInputDialog(null, "Please type a valid Note");
+
+            }
+            String NewN = New.replaceAll("[\r\n]+", " ");
+            addNote(NewN);
             txtNewNote.setText("");
         }
         if ("SearchKeyword".equals(ae.getActionCommand())) {
@@ -274,12 +280,10 @@ public class Coursework extends JFrame implements ActionListener, KeyListener {
         JPanel pnlWest = new JPanel();
         pnlWest.setLayout(new BoxLayout(pnlWest, BoxLayout.Y_AXIS));
         pnlWest.setBorder(BorderFactory.createLineBorder(Color.black));
-
+        JScrollPane scrolls = new JScrollPane(txtNewNote,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         txtNewNote.setFont(fnt);
-        pnlWest.add(txtNewNote);
+        pnlWest.add(scrolls);
         
-        /////////CHANGES SIZE OF ADD NOTE
-        txtNewNote.setMaximumSize(new Dimension(6900, 30));
         
         ////////////////////CHANGE SIZE OF NOTES
         //txtDisplayNotes.setMaximumSize(new Dimension(60, 60));
