@@ -1,6 +1,8 @@
 package coursework;
 
 import java.awt.BorderLayout;
+import java.awt.event.AdjustmentEvent;
+import java.awt.event.AdjustmentListener;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -11,6 +13,8 @@ import java.awt.event.KeyListener;
 import java.awt.event.KeyListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -36,12 +40,16 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 import javax.swing.JTextField;
+import javax.swing.JScrollPane;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 public class Coursework extends JFrame implements ActionListener, KeyListener {
 
     CommonCode cc = new CommonCode();
     JPanel pnl = new JPanel(new BorderLayout());
     JTextArea txtNewNote = new JTextArea();
-    JTextArea txtDisplayNotes = new JTextArea();
+    JTextArea txtNewCNote = new JTextArea();
+    JTextArea txtDisplayNotes = new JTextArea();    
     ArrayList<String> note = new ArrayList<>();
     ArrayList<String> course = new ArrayList<>();
     JComboBox courseList = new JComboBox();
@@ -122,11 +130,17 @@ public class Coursework extends JFrame implements ActionListener, KeyListener {
 			e.printStackTrace();
 		}
         }
+        
         if("addCourseWork".equals(ae.getActionCommand())){
-            txtNewNote.getText();
-            try {
-                Files.write(Paths.get("myfile.txt"), "the text".getBytes(), StandardOpenOption.APPEND);
+            Path path = Paths.get("courses\\" + crse + "\\coursework.txt");
+            String paths = path.toString();
+            try{
+                WriteFile data = new WriteFile( paths );
+                String ACourseW = JOptionPane.showInputDialog(null, "What is your new course");
+                data.writeToFile( ACourseW );
+
             } catch (IOException e) {
+                    e.printStackTrace();
     //exception handling left as an exercise for the reader
 }
         }
@@ -263,6 +277,14 @@ public class Coursework extends JFrame implements ActionListener, KeyListener {
 
         txtNewNote.setFont(fnt);
         pnlWest.add(txtNewNote);
+        
+        /////////CHANGES SIZE OF ADD NOTE
+        txtNewNote.setMaximumSize(new Dimension(6900, 30));
+        
+        ////////////////////CHANGE SIZE OF NOTES
+        //txtDisplayNotes.setMaximumSize(new Dimension(60, 60));
+        //JScrollPane scroll = new JScrollPane(txtDisplayNotes,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
 
         JButton btnAddNote = new JButton("Add note");
         btnAddNote.setActionCommand("NewNote");
@@ -278,9 +300,13 @@ public class Coursework extends JFrame implements ActionListener, KeyListener {
 
         JPanel cen = new JPanel();
         cen.setLayout(new BoxLayout(cen, BoxLayout.Y_AXIS));
-        cen.setBorder(BorderFactory.createLineBorder(Color.black));
+        cen.setSize(60,60);
+        
+        ///////Notes Border
+        //cen.setBorder(BorderFactory.createLineBorder(Color.black));
         txtDisplayNotes.setFont(fnt);
-        cen.add(txtDisplayNotes);
+        JScrollPane scroll = new JScrollPane(txtDisplayNotes,JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED,JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        cen.add(scroll);
 
         add(cen, BorderLayout.CENTER);
 
