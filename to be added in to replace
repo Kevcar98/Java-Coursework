@@ -1,0 +1,12 @@
+private void addNote(String text) {
+        text = text.replaceAll("[\r\n]+", " ");
+        allNotes.addNote(allNotes.getMaxID(), crse, text);
+        addAllNotes();
+    }
+    
+    
+     if ("NewNote".equals(ae.getActionCommand())) {
+            while(!txtNewNote.getText().equals("")){  
+            addNote(txtNewNote.getText());
+            txtNewNote.setText("");
+            }
