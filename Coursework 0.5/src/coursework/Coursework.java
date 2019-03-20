@@ -65,6 +65,7 @@ public class Coursework extends JFrame implements ActionListener, KeyListener {
 // Allows user to add notes through the GUI
 
     private void addNote(String text) {
+        text = text.replaceAll("[\r\n]+", " ");
         allNotes.addNote(allNotes.getMaxID(), crse, text);
         addAllNotes();
     }
@@ -103,15 +104,12 @@ public class Coursework extends JFrame implements ActionListener, KeyListener {
         if ("Exit".equals(ae.getActionCommand())) {
             System.exit(0);
         }
+        
         if ("NewNote".equals(ae.getActionCommand())) {
-            String New = txtNewNote.getText();
-            while ("".equals(New)){
-                New = JOptionPane.showInputDialog(null, "Please type a valid Note");
-
+            while(!txtNewNote.getText().equals("")){
+                addNote(txtNewNote.getText());
+                txtNewNote.setText("");
             }
-            String NewN = New.replaceAll("[\r\n]+", " ");
-            addNote(NewN);
-            txtNewNote.setText("");
         }
         if ("SearchKeyword".equals(ae.getActionCommand())) {
             String list1 = allNotes.searchAllNotesByKeyword("", search.getText());
@@ -269,7 +267,7 @@ public class Coursework extends JFrame implements ActionListener, KeyListener {
         toolBar.addSeparator();
         // This forces anything after it to the right.
         toolBar.add(Box.createHorizontalGlue());
-        search.setMaximumSize(new Dimension(6900, 30));
+        search.setMaximumSize(new Dimension(6900, 100));
         search.setFont(fnt);
         toolBar.add(search);
         toolBar.addSeparator();
